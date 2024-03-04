@@ -4,6 +4,6 @@ global:
 scrape_configs:
 - job_name: EIS-PROD
   scrape_interval: 30s
-  scrape_timeout: 1m
+  scrape_timeout: 30s
   static_configs:
   - targets: ['172.18.88.88:9100']
