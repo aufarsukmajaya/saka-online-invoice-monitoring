@@ -1,5 +1,6 @@
 .PHONY: run-prometheus run-grafana run-postgres-exporter
 
+export DOCKER_NETWORK ?= einvoice
 export PROMETHEUS_VERSION ?= v2.50.1
 export GRAFANA_VERSION ?= 10.3.3
 export POSTGRES_EXPORTER ?= v0.15.0

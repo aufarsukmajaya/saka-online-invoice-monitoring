@@ -1,5 +1,5 @@
 docker run -d \
---network=einvoice \
+--network=${DOCKER_NETWORK} \
 --name=prometheus \
 -v /home/itadmin/go/src/saka-online-invoice-monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
 -v /home/itadmin/database/prometheus/:/prometheus \
