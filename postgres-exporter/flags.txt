@@ -1,0 +1,51 @@
+Create the extension
+CREATE EXTENSION pg_stat_statements;
+
+Change in config
+alter system set shared_preload_libraries='pg_stat_statements';
+
+Restart
+$ systemctl restart postgresql
+
+Verify changes applied or not. The applied attribute must be 'true'.
+select * from pg_file_Settings where name='shared_preload_libraries';
+
+
+
+help Show context-sensitive help (also try --help-long and --help-man).
+=> [no-]collector.replication Enable the replication collector (default: enabled).
+=> [no-]collector.replication_slot Enable the replication_slot collector (default: enabled).
+[no-]collector.database Enable the database collector (default: enabled).
+[no-]collector.locks Enable the locks collector (default: enabled).
+[no-]collector.stat_bgwriter Enable the stat_bgwriter collector (default: enabled).
+[no-]collector.stat_database Enable the stat_database collector (default: enabled).
+[no-]collector.stat_user_tables Enable the stat_user_tables collector (default: enabled).
+[no-]collector.statio_user_tables Enable the statio_user_tables collector (default: enabled).
+[no-]collector.wal Enable the wal collector (default: enabled).
+
+=> [no-]collector.long_running_transactions Enable the long_running_transactions collector (default: disabled).
+=> [no-]collector.stat_statements Enable the stat_statements collector (default: disabled).
+[no-]collector.database_wraparound Enable the database_wraparound collector (default: disabled).
+[no-]collector.postmaster Enable the postmaster collector (default: disabled).
+[no-]collector.process_idle Enable the process_idle collector (default: disabled).
+[no-]collector.stat_activity_autovacuum Enable the stat_activity_autovacuum collector (default: disabled).
+[no-]collector.stat_wal_receiver Enable the stat_wal_receiver collector (default: disabled).
+[no-]collector.statio_user_indexes Enable the statio_user_indexes collector (default: disabled).
+[no-]collector.xlog_location Enable the xlog_location collector (default: disabled).
+
+config.file Set the config file path. Default is postgres_exporter.yml
+web.systemd-socket Use systemd socket activation listeners instead of port listeners (Linux only). Default is false
+web.listen-address Address to listen on for web interface and telemetry. Default is :9187.
+web.config.file Configuration file to use TLS and/or basic authentication. The format of the file is described in the exporter-toolkit repository.
+web.telemetry-path Path under which to expose metrics. Default is /metrics.
+disable-default-metrics Use only metrics supplied from queries.yaml via --extend.query-path. Default is false.
+disable-settings-metrics Use the flag if you don't want to scrape pg_settings. Default is false.
+auto-discover-databases (DEPRECATED) Whether to discover the databases on a server dynamically. Default is false.
+extend.query-path (DEPRECATED) Path to a YAML file containing custom queries to run. Check out queries.yaml for examples of the format.
+dumpmaps Do not run - print the internal representation of the metric maps. Useful when debugging a custom queries file.
+constantLabels (DEPRECATED) Labels to set in all metrics. A list of label=value pairs, separated by commas.
+version Show application version.
+exclude-databases (DEPRECATED) A list of databases to remove when autoDiscoverDatabases is enabled.
+include-databases (DEPRECATED) A list of databases to only include when autoDiscoverDatabases is enabled.
+log.level Set logging level: one of debug, info, warn, error.
+log.format Set the log format: one of logfmt, json.
