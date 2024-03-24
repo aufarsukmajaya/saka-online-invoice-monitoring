@@ -14,3 +14,13 @@ docker run --log-driver=loki \
     grafana/grafana
 
 The wait time can be lowered by setting loki-retries=2, loki-max-backoff_800ms, loki-timeout=1s and keep-file=true.
+
+
+
+
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.6/cmd/loki/loki-local-config.yaml -O loki-config.yaml
+
+docker run --name loki -d -v $(pwd):/mnt/config -p 3100:3100 grafana/loki:2.9.6 -config.file=/mnt/config/loki-config.yaml
+
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.6/clients/cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml
+docker run --name promtail -d -v $(pwd):/mnt/config -v /var/log:/var/log --link loki grafana/promtail:2.9.6 -config.file=/mnt/config/promtail-config.yaml
