@@ -1,9 +1,8 @@
 https://hub.docker.com/r/grafana/loki-docker-driver/tags
 
-docker plugin install grafana/loki-docker-driver:2.9.5 --alias loki --grant-all-permissions
-
+docker plugin install grafana/loki-docker-driver:2.9.6 --alias loki --grant-all-permissions
+docker plugin upgrade loki grafana/loki-docker-driver:2.9.6 --grant-all-permissions
 docker plugin disable loki --force
-docker plugin upgrade loki grafana/loki-docker-driver:2.9.5 --grant-all-permissions
 docker plugin enable loki
 sudo systemctl restart docker
 
